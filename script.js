@@ -37,10 +37,12 @@ InsertionSort.prototype.step = function(auto) {
     swap(this.a, this.k, this.k - 1);
     renderArray(this.ctx, this.a);
   }
-  if(this.k > 0) {
-    this.k--;
+  
+  while (this.k > 0 && this.a[this.k] > this.a[this.k-1]) {
+	  this.k--;
   }
-  else {
+  
+  if(this.k == 0) {
     if(this.i < this.a.length) {
       this.i++;
       this.k = this.i;
@@ -54,7 +56,7 @@ InsertionSort.prototype.step = function(auto) {
   if(auto) {
     setTimeout((function() {
       this.start(true);
-    }).bind(this), 10);
+    }).bind(this), 40);
   }
 }
 
