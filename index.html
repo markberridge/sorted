@@ -1,16 +1,45 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Sorted</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <title>Sorted</title>
 </head>
 <body>
-	<h1>Insertion Sort</h1>
-	<canvas id="a" width="174" height="174" style="border:1px dotted black;"></canvas>
-	<canvas id="b" width="174" height="174" style="border:1px dotted black;"></canvas>
-	<canvas id="c" width="174" height="174" style="border:1px dotted black;"></canvas>
-	<script type="text/javascript" src="js/Canvas.js"></script>
-	<script type="text/javascript" src="js/InsertionSort.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
-</body>
-</body>
+
+  <div class="container theme-showcase" role="main">
+
+    <div class="row">
+      <h1 class="col-md-6 text-center">
+        Insertion Sort <button type="button" class="btn btn-success" onClick="sortAllInsertionSort()">Sort All</button>
+      </h1>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 text-center">
+        <canvas id="in1" width="174" height="174" title="sort"></canvas>
+        Random
+      </div>
+      <div class="col-md-2 text-center">
+        <canvas id="in2" width="174" height="174" title="sort"></canvas>
+        Nearly Sorted
+      </div>
+      <div class="col-md-2 text-center">
+        <canvas id="in3" width="174" height="174" title="sort"></canvas>
+        Reversed
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/Canvas.js"></script>
+  <script src="js/InsertionSort.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

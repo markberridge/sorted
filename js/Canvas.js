@@ -2,7 +2,8 @@ var Canvas = function(id, array) {
   // TODO check element with id exists and is a canvas...
   this.canvas = document.getElementById(id);
   this.ctx = this.canvas.getContext("2d");
-  this.a = array;
+  this.a0 = array.slice(0);
+  this.a = array.slice(0);
   this.scale = 7;
   this.renderArray();
 }
@@ -29,8 +30,8 @@ Canvas.prototype.renderBar = function(index) {
   var width = length * this.scale;
   var height = this.scale;
    // fill bar
-  this.ctx.fillStyle = "black";
-  this.ctx.fillRect(x, y, width, height);
+   this.ctx.fillStyle = "black";
+   this.ctx.fillRect(x, y, width, height);
   // clear after bar
   this.ctx.clearRect (x + width, y, this.canvas.width - (x + width), height);
 }
@@ -51,4 +52,9 @@ Canvas.prototype.clearHighlights = function() {
   var width = this.scale;
   var height = this.canvas.height;
   this.ctx.clearRect (x, y, width, height);
+}
+
+Canvas.prototype.reset = function() {
+  this.a = this.a0.slice(0);
+  this.renderArray();
 }
