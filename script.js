@@ -4,6 +4,11 @@ var ctx = canvas.getContext("2d");
 var sorted =   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
 var reversed = [25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 var nearly =   [1, 2, 4, 5, 9, 6, 3, 7, 8, 10, 11, 13, 12, 14, 16, 15, 17, 18, 19, 21, 22, 20, 23, 25, 24];
+var random =   [9, 15, 13, 11, 8, 20, 10, 19, 6, 24, 4, 3, 1, 12, 17, 21, 23, 2, 16, 18, 25, 14, 5, 22, 7];
+
+// ######
+// ### Insertion Sort
+// ######
 
 var InsertionSort = function(context, array) {
   this.ctx = context;
@@ -16,10 +21,17 @@ var InsertionSort = function(context, array) {
   renderArray(this.ctx, this.a);
 }
 
-InsertionSort.prototype.step = function() {
+InsertionSort.prototype.step = function(auto) {
   
   console.log("step called, i=" + this.i + ", k=" + this.k);
   console.log("a=" + this.a);
+
+  // Iterative algorithm:
+  // for (var i = 1; i < a.length; i++) {
+  //   for (var k = i; k > 0 && a[k] < a[k-1]; k--) {
+  //     swap(a, k, k - 1);
+  //    }
+  // }
 
   if(this.a[this.k] < this.a[this.k-1]) {
     swap(this.a, this.k, this.k - 1);
@@ -39,35 +51,27 @@ InsertionSort.prototype.step = function() {
     }
   }
   
-  setTimeout((function() {
-    this.start();
-  }).bind(this),100); 
+  if(auto) {
+    setTimeout((function() {
+      this.start(true);
+    }).bind(this), 10);
+  }
 }
 
 InsertionSort.prototype.start = function() {
-  this.step();
+  this.step(true);
 }
 
 
-
-
-
+//######
+//### Canvas - needs encapsulating
+//######
 
 function swap(a, x, y) {
   console.log("Swapping " + a[y] + " and " + a[x]);
   var z = a[y];
   a[y] = a[x];
   a[x] = z;
-}
-
-function insertionSort(ctx, a) {
-  renderArray(ctx, a);
-  for (var i = 1; i < a.length; i++) {
-    for (var k = i; k > 0 && a[k] < a[k-1]; k--) {
-      swap(a, k, k - 1);
-      renderArray(ctx, a);
-    }
-  }
 }
 
 function renderArray(ctx, a) {
@@ -88,9 +92,7 @@ function renderBar(ctx, index, length) {
   ctx.clearRect (x + width, y, canvas.width - (x + width), height);
 }
 
+//######
 
-
-
-
-var sort = new InsertionSort(ctx, nearly);
+var sort = new InsertionSort(ctx, random);
 sort.start();
