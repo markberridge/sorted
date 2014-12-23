@@ -10,15 +10,14 @@ var InsertionSort = function(canvas) {
 }
 
 InsertionSort.prototype.step = function(auto) {
-  console.log("step called, i=" + this.i + ", k=" + this.k);
+  console.log("InsertionSort.step() called, i=" + this.i + ", k=" + this.k);
   console.log("a=" + this.canvas.a);
-  this.started = true;
 
   // Iterative algorithm:
   // for (var i = 1; i < a.length; i++) {
   //   for (var k = i; k > 0 && a[k] < a[k-1]; k--) {
   //     swap(a, k, k - 1);
-  //    }
+  //   }
   // }
 
   if(this.canvas.a[this.k] < this.canvas.a[this.k - 1]) {

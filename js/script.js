@@ -11,3 +11,13 @@ function sortAllInsertionSort() {
   in2.start();
   in3.start();
 }
+
+var bb1 = new BubbleSort(new Canvas("bb1", random));
+var bb2 = new BubbleSort(new Canvas("bb2", nearly));
+var bb3 = new BubbleSort(new Canvas("bb3", reversed));
+
+function sortAllBubbleSort() {
+  bb1.start();
+  bb2.start();
+  bb3.start();
+}
