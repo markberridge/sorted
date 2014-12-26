@@ -1,7 +1,7 @@
 var BubbleSort = function(canvas) {
   this.canvas = canvas;
-  this.i = 1;
-  this.k = 1;
+  this.i = -1;
+  this.k = this.canvas.a.length - 1;
   this.delay = 40;
   this.timer = null;
   this.canvas.canvas.addEventListener("click", (function(){
@@ -14,50 +14,50 @@ BubbleSort.prototype.step = function(auto) {
   console.log("a=" + this.canvas.a);
 
   // Iterative algorithm:
-for (var i = -1; i < this.canvas.a.length; i++) {
-  for (var k = this.canvas.a.length; k > i + 1; k--) {
-    if(this.canvas.a[k] < this.canvas.a[k-1]) {
-      this.canvas.swap(k, k - 1);
-      console.log("a=" + this.canvas.a);
+// for (var i = -1; i < this.canvas.a.length; i++) {
+//   for (var k = this.canvas.a.length; k > i + 1; k--) {
+//     if(this.canvas.a[k] < this.canvas.a[k-1]) {
+//       this.canvas.swap(k, k - 1);
+//       console.log("a=" + this.canvas.a);
+//     }
+//   }
+// }
+
+  if(this.canvas.a[this.k] < this.canvas.a[this.k - 1]) {
+    this.canvas.swap(this.k, this.k - 1);
+    this.canvas.highlight(this.k - 1);
+  }
+  
+  while (this.k > this.i + 1 && this.canvas.a[this.k] >= this.canvas.a[this.k - 1]) {
+    this.k--;
+  }
+
+  if(this.k == this.i + 1) {
+    this.i++
+
+    if(this.i < this.canvas.a.length - 1) {
+      this.k = this.canvas.a.length - 1;
+      this.canvas.highlight(this.k - 1);
+    }
+    else {
+      this.canvas.clearHighlights();
+      console.log("Sorted");
+      return;
     }
   }
-}
 
-  // if(this.canvas.a[this.k] < this.canvas.a[this.k - 1]) {
-  //   this.canvas.swap(this.k, this.k - 1);
-  //   this.canvas.highlight(this.k);
-  // }
-  
-  // while (this.k > 0 && this.canvas.a[this.k] > this.canvas.a[this.k - 1]) {
-  //   this.k--;
-  // }
-
-  // if(this.k == 0) {
-  //   this.i++
-
-  //   if(this.i < this.canvas.a.length) {
-  //     this.k = this.i;
-  //     this.canvas.highlight(this.k);
-  //   }
-  //   else {
-  //     this.canvas.clearHighlights();
-  //     console.log("Sorted");
-  //     return;
-  //   }
-  // }
-
-  // if(auto) {
-  //   this.timer = setTimeout((function() {
-  //     this.step(true);
-  //   }).bind(this), this.delay);
-  // }
+  if(auto) {
+    this.timer = setTimeout((function() {
+      this.step(true);
+    }).bind(this), this.delay);
+  }
 }
 
 BubbleSort.prototype.reset = function() {
   clearTimeout(this.timer);
   this.canvas.reset();
-  this.i = 1;
-  this.k = 1;
+  this.i = -1;
+  this.k = this.canvas.a.length - 1;
 }
 
 BubbleSort.prototype.start = function() {
