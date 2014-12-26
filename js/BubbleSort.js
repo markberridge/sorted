@@ -14,30 +14,29 @@ BubbleSort.prototype.step = function(auto) {
   console.log("a=" + this.canvas.a);
 
   // Iterative algorithm:
-// for (var i = -1; i < this.canvas.a.length; i++) {
-//   for (var k = this.canvas.a.length; k > i + 1; k--) {
-//     if(this.canvas.a[k] < this.canvas.a[k-1]) {
-//       this.canvas.swap(k, k - 1);
-//       console.log("a=" + this.canvas.a);
-//     }
-//   }
-// }
+  // for (var i = -1; i < a.length; i++) {
+  //   for (var k = a.length; k > i + 1; k--) {
+  //     if(a[k] < a[k-1]) {
+  //       swap(k, k - 1);
+  //     }
+  //   }
+  // }
 
   if(this.canvas.a[this.k] < this.canvas.a[this.k - 1]) {
     this.canvas.swap(this.k, this.k - 1);
     this.canvas.highlight(this.k - 1);
   }
-  
+
   while (this.k > this.i + 1 && this.canvas.a[this.k] >= this.canvas.a[this.k - 1]) {
     this.k--;
   }
 
   if(this.k == this.i + 1) {
     this.i++
+    this.canvas.highlight(this.i);
 
     if(this.i < this.canvas.a.length - 1) {
       this.k = this.canvas.a.length - 1;
-      this.canvas.highlight(this.k - 1);
     }
     else {
       this.canvas.clearHighlights();

@@ -16,7 +16,7 @@ InsertionSort.prototype.step = function(auto) {
   // Iterative algorithm:
   // for (var i = 1; i < a.length; i++) {
   //   for (var k = i; k > 0 && a[k] < a[k-1]; k--) {
-  //     swap(a, k, k - 1);
+  //     swap(k, k - 1);
   //   }
   // }
 
